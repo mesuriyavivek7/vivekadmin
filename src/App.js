@@ -8,6 +8,10 @@ import New from "./pages/new/New";
 //importing require React router dom component
 import { BrowserRouter,Route,Routes } from "react-router-dom";
 
+//importing form data
+import {userInputs} from './formSource'
+import { productInputs } from "./formSource";
+
 function App() {
   return (
     <div className="App">
@@ -18,12 +22,12 @@ function App() {
            <Route path="users">
              <Route index element={<List></List>}></Route>
              <Route path=":userId" element={<Single></Single>}></Route>
-             <Route path="new" element={<New></New>}></Route>
+             <Route path="new" element={<New inputs={userInputs} title='Add New Users'></New>}></Route>
            </Route>
            <Route path="products">
              <Route index element={<List></List>}></Route>
              <Route path=":userId" element={<Single></Single>}></Route>
-             <Route path="new" element={<New></New>}></Route>
+             <Route path="new" element={<New inputs={productInputs} title='Add New Products'></New>}></Route>
            </Route>
         </Routes>
       </BrowserRouter>
