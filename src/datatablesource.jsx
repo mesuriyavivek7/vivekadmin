@@ -1,95 +1,76 @@
 //importing images
 import User from './assets/user.jpg'
-
+import NOIMG from './assets/noimg.jpg'
 export const usersCol=[
     { field: 'id', headerName: 'ID', width: 70 },
     {field:'username',headerName:'User',width:230,
      renderCell:(params)=>{
         return (
             <div className='cellWithImg'>
-                <img src={params.row.img} className='cellImg' alt=""></img>
+                <img src={params.row.img || NOIMG} className='cellImg' alt=""></img>
                 <span>{params.row.username}</span>
             </div>
         )
      }
     },
     {field:'email',headerName:'Email',width:230},
-    {field:'age',headerName:'Age',width:100},
-    {field:'status',headerName:'Status',width:160,
-     renderCell:(params)=>{
-          return(
-            <span className={`cellWithStatus ${params.row.status}`}>{params.row.status}</span>
-          )
-     }
+    {field:'country',headerName:'Country',width:100},
+    {field:'city',headerName:'City',width:100},
+    {field:'phone',headerName:'Phone',width:100},
+    
+
+]
+
+
+export const hotelsCol=[
+    {field:"_id",headerName:'ID',width:250},
+    {
+        field:"name",
+        headerName:'Name',
+        width:150
+    },
+    {
+        field:'type',
+        headerName:"Type",
+        width:150
+    },
+    {
+       field:"title",
+       headerName:"Title",
+       width:150
+    },
+    {
+        field:'city',
+        headerName:"city",
+        width:150
     }
-
 ]
 
-export const usersRow=[
+export const roomsCol=[
     {
-        id:1,
-        username:'akshay patel',
-        img:User,
-        status:'active',
-        email:'akshaypatel@gmail.com',
-        age:20,
+        field:"_id",
+        headerName:"Id",
+        width:200
     },
     {
-        id:2,
-        username:'Harsh patel',
-        img:User,
-        status:'active',
-        email:'harshpatel@gmail.com',
-        age:35,
-        
+        field:'title',
+        headerName:'Title',
+        width:230
     },
     {
-        id:3,
-        username:'Jay patel',
-        img:User,
-        status:'passive',
-        email:'akshaypatel@gmail.com',
-        age:35,
+        field:'desc',
+        headerName:"Description",
+        width:200
     },
     {
-        id:4,
-        username:'Rohit Chauhan',
-        img:User,
-        status:'pending',
-        email:'rohitchauhan@gmail.com',
-        age:20,
+        field:'price',
+        headerName:'Price',
+        width:100
     },
     {
-        id:5,
-        username:'akshay patel',
-        img:User,
-        status:'active',
-        email:'akshaypatel@gmail.com',
-        age:20,
-    },
-    {
-        id:6,
-        username:'Harsh patel',
-        img:User,
-        status:'active',
-        email:'harshpatel@gmail.com',
-        age:35,
-        
-    },
-    {
-        id:7,
-        username:'Jay patel',
-        img:User,
-        status:'passive',
-        email:'akshaypatel@gmail.com',
-        age:35,
-    },
-    {
-        id:8,
-        username:'Rohit Chauhan',
-        img:User,
-        status:'pending',
-        email:'rohitchauhan@gmail.com',
-        age:20,
-    },
+        field:'maxPeople',
+        headerName:'Max People',
+        width:100
+    }
 ]
+

@@ -101,7 +101,7 @@ const rows=[
                   </div>
                   
               </TableCell>
-              <TableCell className='tablecell'>{row.customer}</TableCell>
+              <TableCell className='tableCell'>{row.customer}</TableCell>
               <TableCell className='tableCell'>{row.date}</TableCell>
               <TableCell className='tableCell'>{row.amount}</TableCell>
               <TableCell className='tableCell'>{row.method}</TableCell>

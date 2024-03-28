@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 //importing sass
 import './sidebar.scss'
@@ -6,8 +6,8 @@ import './sidebar.scss'
 //importing icons
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import GroupIcon from '@mui/icons-material/Group';
-import CropLandscapeIcon from '@mui/icons-material/CropLandscape';
-import InventoryIcon from '@mui/icons-material/Inventory';
+import OtherHousesIcon from '@mui/icons-material/OtherHouses';
+import LivingIcon from '@mui/icons-material/Living';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
 import NotificationsIcon from '@mui/icons-material/Notifications';
@@ -18,8 +18,10 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 import { Link } from 'react-router-dom';
-
+import { DarkModeContext } from '../../context/darkModeContext';
 export default function SideBar() {
+
+  const {dispatch}=useContext(DarkModeContext)
   return (
     <div className='sidebar'>
         <div className='top'>
@@ -43,16 +45,18 @@ export default function SideBar() {
                      <span>Users</span>
                  </li>
                 </Link>
-                <Link style={{textDecoration:'none'}} to='/products'>
+                <Link style={{textDecoration:'none'}} to='/hotels'>
                  <li>
-                     <CropLandscapeIcon className='icon'></CropLandscapeIcon>
-                     <span>Products</span>
+                     <OtherHousesIcon className='icon'></OtherHousesIcon>
+                     <span>Hotels</span>
                  </li>
                 </Link>
+                <Link style={{textDecoration:'none'}} to='/rooms'>
                 <li>
-                    <InventoryIcon className='icon'></InventoryIcon>
-                    <span>Orders</span>
+                    <LivingIcon></LivingIcon>
+                    <span>Rooms</span>
                 </li>
+                </Link>
                 <li>
                     <LocalShippingIcon className='icon'></LocalShippingIcon>
                     <span>Delivery</span>
@@ -91,8 +95,8 @@ export default function SideBar() {
             </ul>
         </div>
         <div className='bottom'>
-            <div className='colorOption'></div>
-            <div className='colorOption'></div>
+            <div className='colorOption' onClick={()=>dispatch({type:'LIGHT'})}></div>
+            <div className='colorOption' onClick={()=>dispatch({type:'DARK'})}></div>
         </div>
     </div>
   )

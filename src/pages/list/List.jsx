@@ -8,7 +8,7 @@ import SideBar from '../../components/sidebar/SideBar'
 import Navbar from '../../components/navbar/Navbar'
 import DataTable from '../../components/datatable/DataTable'
 
-export default function List() {
+export default function List({columns}) {
   return (
     <div className='list'>
       <SideBar></SideBar>
@@ -16,7 +16,7 @@ export default function List() {
       <div className='listContainer'>
         <Navbar></Navbar>
         
-        <DataTable></DataTable>
+        <DataTable columns={columns}></DataTable>
       </div>
     </div>
   )

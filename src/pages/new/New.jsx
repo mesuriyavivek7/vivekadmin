@@ -8,14 +8,45 @@ import Navbar from '../../components/navbar/Navbar'
 //importing images
 import NOIMG from '../../assets/noimg.jpg'
 
+import axios from 'axios'
+
+import { userInputs } from '../../formSource'
 
 //importing icons
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 
-export default function New({inputs,title}) {
+export default function New() {
 
   const [file,setFile]=useState("")
-  console.log(file)
+  const [info,setInfo]=useState({})
+
+  const handleChange=(e)=>{
+     setInfo((prev)=>({...prev,[e.target.id]:e.target.value}))
+
+  }
+  const handleClick= async (e)=>{
+    e.preventDefault();
+     
+   const data=new FormData()
+   data.append("file",file)
+   data.append("upload_preset","upload")
+
+   try{
+     const uploadRes=await axios.post('https://api.cloudinary.com/v1_1/djxavfpqc/image/upload',data)
+     console.log(uploadRes)
+
+     const {url}=uploadRes.data
+     const newUser={
+       ...info,
+       img:url
+     }
+     await axios.post("/auth/register",newUser)
+   }catch(err){
+     console.log(err)
+   }
+
+  }
+
   return (
     <div className='new'>
       <SideBar></SideBar>
@@ -23,7 +54,7 @@ export default function New({inputs,title}) {
       <div className='newContainer'>
          <Navbar></Navbar>
          <div className='top'>
-           <h1>{title}</h1>
+           <h1>Add New Users</h1>
          </div>
          <div className='bottom'>
             <div className='left'>
@@ -37,14 +68,14 @@ export default function New({inputs,title}) {
                   </div>
                  
                   {
-                    inputs.map((input)=>(
+                    userInputs.map((input)=>(
                       <div className='formInput' key={input.id}>
                        <label>{input.label}</label>
-                       <input type={input.type} placeholder={input.placeholder}></input>
+                       <input type={input.type} id={input.id} onChange={handleChange} placeholder={input.placeholder}></input>
                       </div>
                     ))
                   }
-                  <button className='formBtn'>Send</button>
+                  <button onClick={handleClick} className='formBtn'>Send</button>
                </form>
             </div>
          </div>
